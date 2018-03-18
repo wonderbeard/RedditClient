@@ -13,6 +13,13 @@
 		91234E9520570DC700434770 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 91234E9420570DC700434770 /* Assets.xcassets */; };
 		91234E9820570DC700434770 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 91234E9620570DC700434770 /* LaunchScreen.storyboard */; };
 		91234EA320570DC700434770 /* RedditClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91234EA220570DC700434770 /* RedditClientTests.swift */; };
+		91322439205F04340037AC86 /* Reddit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91322434205F04330037AC86 /* Reddit.swift */; };
+		9132243A205F04340037AC86 /* Thing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91322435205F04340037AC86 /* Thing.swift */; };
+		9132243B205F04340037AC86 /* Link.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91322436205F04340037AC86 /* Link.swift */; };
+		9132243C205F04340037AC86 /* Listing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91322437205F04340037AC86 /* Listing.swift */; };
+		9132243D205F04340037AC86 /* Thumbnail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91322438205F04340037AC86 /* Thumbnail.swift */; };
+		9132243F205F06750037AC86 /* Pagination.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9132243E205F06750037AC86 /* Pagination.swift */; };
+		91322442205F07620037AC86 /* RedditTop.json in Resources */ = {isa = PBXBuildFile; fileRef = 91322441205F07620037AC86 /* RedditTop.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +43,13 @@
 		91234E9E20570DC700434770 /* RedditClientTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RedditClientTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		91234EA220570DC700434770 /* RedditClientTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RedditClientTests.swift; sourceTree = "<group>"; };
 		91234EA420570DC700434770 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		91322434205F04330037AC86 /* Reddit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reddit.swift; sourceTree = "<group>"; };
+		91322435205F04340037AC86 /* Thing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Thing.swift; sourceTree = "<group>"; };
+		91322436205F04340037AC86 /* Link.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Link.swift; sourceTree = "<group>"; };
+		91322437205F04340037AC86 /* Listing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Listing.swift; sourceTree = "<group>"; };
+		91322438205F04340037AC86 /* Thumbnail.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Thumbnail.swift; sourceTree = "<group>"; };
+		9132243E205F06750037AC86 /* Pagination.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pagination.swift; sourceTree = "<group>"; };
+		91322441205F07620037AC86 /* RedditTop.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = RedditTop.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,10 +92,9 @@
 			isa = PBXGroup;
 			children = (
 				91234E8D20570DC700434770 /* AppDelegate.swift */,
-				91234E8F20570DC700434770 /* ViewController.swift */,
-				91234E9120570DC700434770 /* Main.storyboard */,
-				91234E9420570DC700434770 /* Assets.xcassets */,
-				91234E9620570DC700434770 /* LaunchScreen.storyboard */,
+				91322433205F03990037AC86 /* Domain */,
+				91322443205F07840037AC86 /* Modules */,
+				91322440205F07410037AC86 /* Resources */,
 				91234E9920570DC700434770 /* Info.plist */,
 			);
 			path = RedditClient;
@@ -94,6 +107,38 @@
 				91234EA420570DC700434770 /* Info.plist */,
 			);
 			path = RedditClientTests;
+			sourceTree = "<group>";
+		};
+		91322433205F03990037AC86 /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+				91322435205F04340037AC86 /* Thing.swift */,
+				91322436205F04340037AC86 /* Link.swift */,
+				91322437205F04340037AC86 /* Listing.swift */,
+				9132243E205F06750037AC86 /* Pagination.swift */,
+				91322434205F04330037AC86 /* Reddit.swift */,
+				91322438205F04340037AC86 /* Thumbnail.swift */,
+			);
+			path = Domain;
+			sourceTree = "<group>";
+		};
+		91322440205F07410037AC86 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				91234E9120570DC700434770 /* Main.storyboard */,
+				91234E9620570DC700434770 /* LaunchScreen.storyboard */,
+				91234E9420570DC700434770 /* Assets.xcassets */,
+				91322441205F07620037AC86 /* RedditTop.json */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		91322443205F07840037AC86 /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+				91234E8F20570DC700434770 /* ViewController.swift */,
+			);
+			path = Modules;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -180,6 +225,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				91234E9820570DC700434770 /* LaunchScreen.storyboard in Resources */,
+				91322442205F07620037AC86 /* RedditTop.json in Resources */,
 				91234E9520570DC700434770 /* Assets.xcassets in Resources */,
 				91234E9320570DC700434770 /* Main.storyboard in Resources */,
 			);
@@ -199,8 +245,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9132243A205F04340037AC86 /* Thing.swift in Sources */,
 				91234E9020570DC700434770 /* ViewController.swift in Sources */,
+				91322439205F04340037AC86 /* Reddit.swift in Sources */,
 				91234E8E20570DC700434770 /* AppDelegate.swift in Sources */,
+				9132243C205F04340037AC86 /* Listing.swift in Sources */,
+				9132243F205F06750037AC86 /* Pagination.swift in Sources */,
+				9132243B205F04340037AC86 /* Link.swift in Sources */,
+				9132243D205F04340037AC86 /* Thumbnail.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
