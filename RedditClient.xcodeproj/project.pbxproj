@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		910C65FA206051D8007E47CF /* Reusable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 910C65F9206051D8007E47CF /* Reusable.swift */; };
+		910C65FC206051F8007E47CF /* UITableView+Reusable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 910C65FB206051F8007E47CF /* UITableView+Reusable.swift */; };
+		910C65FE206052BC007E47CF /* UIImageView+ImageURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 910C65FD206052BC007E47CF /* UIImageView+ImageURL.swift */; };
+		910C6600206052E7007E47CF /* DateFormatter+FormatInitializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 910C65FF206052E7007E47CF /* DateFormatter+FormatInitializer.swift */; };
+		910C660320605354007E47CF /* DateMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 910C660220605354007E47CF /* DateMapper.swift */; };
+		910C660520605452007E47CF /* Mapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 910C660420605452007E47CF /* Mapper.swift */; };
 		91234E8E20570DC700434770 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91234E8D20570DC700434770 /* AppDelegate.swift */; };
 		91234E9020570DC700434770 /* ItemListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91234E8F20570DC700434770 /* ItemListViewController.swift */; };
 		91234E9320570DC700434770 /* ItemListViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 91234E9120570DC700434770 /* ItemListViewController.storyboard */; };
@@ -39,6 +45,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		910C65F9206051D8007E47CF /* Reusable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reusable.swift; sourceTree = "<group>"; };
+		910C65FB206051F8007E47CF /* UITableView+Reusable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Reusable.swift"; sourceTree = "<group>"; };
+		910C65FD206052BC007E47CF /* UIImageView+ImageURL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+ImageURL.swift"; sourceTree = "<group>"; };
+		910C65FF206052E7007E47CF /* DateFormatter+FormatInitializer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateFormatter+FormatInitializer.swift"; sourceTree = "<group>"; };
+		910C660220605354007E47CF /* DateMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateMapper.swift; sourceTree = "<group>"; };
+		910C660420605452007E47CF /* Mapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mapper.swift; sourceTree = "<group>"; };
 		91234E8A20570DC700434770 /* RedditClient.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RedditClient.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		91234E8D20570DC700434770 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		91234E8F20570DC700434770 /* ItemListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemListViewController.swift; sourceTree = "<group>"; };
@@ -82,6 +94,44 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		910C65F8206051B1007E47CF /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				910C660120605333007E47CF /* Mappers */,
+				9180C9B8205F15CB001A490C /* Reactive */,
+				910C66062060558D007E47CF /* Reusable */,
+				910C65FD206052BC007E47CF /* UIImageView+ImageURL.swift */,
+				910C65FF206052E7007E47CF /* DateFormatter+FormatInitializer.swift */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		910C660120605333007E47CF /* Mappers */ = {
+			isa = PBXGroup;
+			children = (
+				910C660220605354007E47CF /* DateMapper.swift */,
+				910C660420605452007E47CF /* Mapper.swift */,
+			);
+			path = Mappers;
+			sourceTree = "<group>";
+		};
+		910C66062060558D007E47CF /* Reusable */ = {
+			isa = PBXGroup;
+			children = (
+				910C65F9206051D8007E47CF /* Reusable.swift */,
+				910C65FB206051F8007E47CF /* UITableView+Reusable.swift */,
+			);
+			path = Reusable;
+			sourceTree = "<group>";
+		};
+		910C6607206055BF007E47CF /* LaunchScreen */ = {
+			isa = PBXGroup;
+			children = (
+				91234E9620570DC700434770 /* LaunchScreen.storyboard */,
+			);
+			path = LaunchScreen;
+			sourceTree = "<group>";
+		};
 		91234E8120570DC700434770 = {
 			isa = PBXGroup;
 			children = (
@@ -104,7 +154,7 @@
 			isa = PBXGroup;
 			children = (
 				91234E8D20570DC700434770 /* AppDelegate.swift */,
-				9180C9B8205F15CB001A490C /* Reactive */,
+				910C65F8206051B1007E47CF /* Core */,
 				91322433205F03990037AC86 /* Domain */,
 				91322443205F07840037AC86 /* Modules */,
 				91322440205F07410037AC86 /* Resources */,
@@ -138,7 +188,6 @@
 		91322440205F07410037AC86 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				91234E9620570DC700434770 /* LaunchScreen.storyboard */,
 				91234E9420570DC700434770 /* Assets.xcassets */,
 				91322441205F07620037AC86 /* RedditTop.json */,
 			);
@@ -148,6 +197,7 @@
 		91322443205F07840037AC86 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				910C6607206055BF007E47CF /* LaunchScreen */,
 				9151ADE2206032C2002B87E4 /* Main */,
 				9151ADE1206032BB002B87E4 /* ItemList */,
 			);
@@ -290,17 +340,23 @@
 			files = (
 				9132243A205F04340037AC86 /* Thing.swift in Sources */,
 				91234E9020570DC700434770 /* ItemListViewController.swift in Sources */,
+				910C65FE206052BC007E47CF /* UIImageView+ImageURL.swift in Sources */,
 				91322439205F04340037AC86 /* Reddit.swift in Sources */,
 				91234E8E20570DC700434770 /* AppDelegate.swift in Sources */,
 				9180C9BA205F15D7001A490C /* Observable.swift in Sources */,
 				9132243C205F04340037AC86 /* Listing.swift in Sources */,
+				910C65FA206051D8007E47CF /* Reusable.swift in Sources */,
 				9151ADC020602721002B87E4 /* ItemTableViewCell.swift in Sources */,
 				9180C9BC205F15E6001A490C /* Subject.swift in Sources */,
 				9180C9BE205F15F6001A490C /* Buffer.swift in Sources */,
+				910C65FC206051F8007E47CF /* UITableView+Reusable.swift in Sources */,
 				9132243F205F06750037AC86 /* Pagination.swift in Sources */,
 				9132243B205F04340037AC86 /* Link.swift in Sources */,
 				9180C9C0205F1DAE001A490C /* ItemListModel.swift in Sources */,
+				910C660320605354007E47CF /* DateMapper.swift in Sources */,
 				9132243D205F04340037AC86 /* Thumbnail.swift in Sources */,
+				910C6600206052E7007E47CF /* DateFormatter+FormatInitializer.swift in Sources */,
+				910C660520605452007E47CF /* Mapper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
