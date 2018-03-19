@@ -20,6 +20,8 @@
 		9132243D205F04340037AC86 /* Thumbnail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91322438205F04340037AC86 /* Thumbnail.swift */; };
 		9132243F205F06750037AC86 /* Pagination.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9132243E205F06750037AC86 /* Pagination.swift */; };
 		91322442205F07620037AC86 /* RedditTop.json in Resources */ = {isa = PBXBuildFile; fileRef = 91322441205F07620037AC86 /* RedditTop.json */; };
+		9151ADC020602721002B87E4 /* ItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9151ADBF20602721002B87E4 /* ItemTableViewCell.swift */; };
+		9151ADE4206032CB002B87E4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9151ADE3206032CB002B87E4 /* Main.storyboard */; };
 		9180C9BA205F15D7001A490C /* Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9180C9B9205F15D7001A490C /* Observable.swift */; };
 		9180C9BC205F15E6001A490C /* Subject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9180C9BB205F15E6001A490C /* Subject.swift */; };
 		9180C9BE205F15F6001A490C /* Buffer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9180C9BD205F15F6001A490C /* Buffer.swift */; };
@@ -54,6 +56,8 @@
 		91322438205F04340037AC86 /* Thumbnail.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Thumbnail.swift; sourceTree = "<group>"; };
 		9132243E205F06750037AC86 /* Pagination.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pagination.swift; sourceTree = "<group>"; };
 		91322441205F07620037AC86 /* RedditTop.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = RedditTop.json; sourceTree = "<group>"; };
+		9151ADBF20602721002B87E4 /* ItemTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemTableViewCell.swift; sourceTree = "<group>"; };
+		9151ADE3206032CB002B87E4 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		9180C9B9205F15D7001A490C /* Observable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observable.swift; sourceTree = "<group>"; };
 		9180C9BB205F15E6001A490C /* Subject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Subject.swift; sourceTree = "<group>"; };
 		9180C9BD205F15F6001A490C /* Buffer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Buffer.swift; sourceTree = "<group>"; };
@@ -144,11 +148,29 @@
 		91322443205F07840037AC86 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				9151ADE2206032C2002B87E4 /* Main */,
+				9151ADE1206032BB002B87E4 /* ItemList */,
+			);
+			path = Modules;
+			sourceTree = "<group>";
+		};
+		9151ADE1206032BB002B87E4 /* ItemList */ = {
+			isa = PBXGroup;
+			children = (
 				9180C9BF205F1DAE001A490C /* ItemListModel.swift */,
 				91234E8F20570DC700434770 /* ItemListViewController.swift */,
 				91234E9120570DC700434770 /* ItemListViewController.storyboard */,
+				9151ADBF20602721002B87E4 /* ItemTableViewCell.swift */,
 			);
-			path = Modules;
+			path = ItemList;
+			sourceTree = "<group>";
+		};
+		9151ADE2206032C2002B87E4 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				9151ADE3206032CB002B87E4 /* Main.storyboard */,
+			);
+			path = Main;
 			sourceTree = "<group>";
 		};
 		9180C9B8205F15CB001A490C /* Reactive */ = {
@@ -245,6 +267,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				91234E9820570DC700434770 /* LaunchScreen.storyboard in Resources */,
+				9151ADE4206032CB002B87E4 /* Main.storyboard in Resources */,
 				91322442205F07620037AC86 /* RedditTop.json in Resources */,
 				91234E9520570DC700434770 /* Assets.xcassets in Resources */,
 				91234E9320570DC700434770 /* ItemListViewController.storyboard in Resources */,
@@ -271,6 +294,7 @@
 				91234E8E20570DC700434770 /* AppDelegate.swift in Sources */,
 				9180C9BA205F15D7001A490C /* Observable.swift in Sources */,
 				9132243C205F04340037AC86 /* Listing.swift in Sources */,
+				9151ADC020602721002B87E4 /* ItemTableViewCell.swift in Sources */,
 				9180C9BC205F15E6001A490C /* Subject.swift in Sources */,
 				9180C9BE205F15F6001A490C /* Buffer.swift in Sources */,
 				9132243F205F06750037AC86 /* Pagination.swift in Sources */,

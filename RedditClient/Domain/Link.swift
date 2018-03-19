@@ -6,7 +6,7 @@ struct Link {
     var title: String?
     var url: URL
     var author: String?
-    var created: Date
+    var date: Date
     var domain: String
     var isOver18: Bool
     var permalink: String
@@ -62,7 +62,7 @@ extension Link: Decodable {
         crosspostsCount = try container.decode(Int?.self, forKey: .crosspostsCount) ?? 0
         likesCount = try container.decode(Int?.self, forKey: .likesCount) ?? 0
         upsCount = try container.decode(Int?.self, forKey: .upsCount) ?? 0
-        created = try {
+        date = try {
             let timestamp = try container.decode(Double.self, forKey: .created)
             return Date(timeIntervalSince1970: timestamp)
         }()

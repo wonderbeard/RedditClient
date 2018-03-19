@@ -29,7 +29,7 @@ class ItemListModel {
         listingSubject.subscribe(observer)
     }
     
-    func didFailLoadingItems(_ observer:  @escaping (Error) -> Void) {
+    func didFailLoadingItems(_ observer: @escaping (Error) -> Void) {
         errorSubject.subscribe(observer)
     }
     
