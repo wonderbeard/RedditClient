@@ -8,6 +8,14 @@
 
 import UIKit
 
+struct ItemCellViewModel {
+    var thumbnailVisible: Bool
+    var title: String?
+    var credentialsText: String?
+    var commentsText: String?
+    var upsText: String?
+}
+
 class ItemTableViewCell: UITableViewCell {
 
     @IBOutlet weak var thumbnailImageView: UIImageView!
@@ -15,6 +23,14 @@ class ItemTableViewCell: UITableViewCell {
     @IBOutlet weak var credentialsLabel: UILabel!
     @IBOutlet weak var commentsLabel: UILabel!
     @IBOutlet weak var upsLabel: UILabel!
+    
+    func setViewModel(_ viewModel: ItemCellViewModel) {
+        thumbnailImageView.isHidden = !viewModel.thumbnailVisible
+        titleLabel.text = viewModel.title
+        credentialsLabel.text = viewModel.credentialsText
+        commentsLabel.text = viewModel.commentsText
+        upsLabel.text = viewModel.upsText
+    }
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -36,8 +52,8 @@ class ItemTableViewCell: UITableViewCell {
     
     override func prepareForReuse() {
         super.prepareForReuse()
-        thumbnailImageView.image = nil
         thumbnailImageView.isHidden = false
+        thumbnailImageView.image = nil
         titleLabel.text = nil
         credentialsLabel.text = nil
         commentsLabel.text = nil

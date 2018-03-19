@@ -12,10 +12,8 @@ class ItemListModel {
     
     private let queue: DispatchQueue
     private let jsonDecoder: JSONDecoder
-    private let listingSubject = Subject<Void>(replay: 1)
+    private let itemsSubject = Subject<[Link]>(replay: 1)
     private let errorSubject = Subject<Error>(replay: 1)
-    
-    private(set) var items: [Link] = []
     
     init(
         queue: DispatchQueue = .global(qos: .userInitiated),
@@ -25,8 +23,8 @@ class ItemListModel {
         self.jsonDecoder = jsonDecoder
     }
     
-    func didLoadItems(_ observer: @escaping () -> Void) {
-        listingSubject.subscribe(observer)
+    func didLoadItems(_ observer: @escaping ([Link]) -> Void) {
+        itemsSubject.subscribe(observer)
     }
     
     func didFailLoadingItems(_ observer: @escaping (Error) -> Void) {
@@ -34,21 +32,21 @@ class ItemListModel {
     }
     
     func loadItems(from url: URL) {
-        queue.async { [unowned self, jsonDecoder] in
+        queue.async { [jsonDecoder, itemsSubject, errorSubject] in
             do {
                 
                 let data = try Data(contentsOf: url)
                 let listingThing = try jsonDecoder.decode(Thing<Listing<Thing<Link>>>.self, from: data)
                 
                 let listing = listingThing.data
-                self.items = listing.children.map{ $0.data }
-                DispatchQueue.main.async { [unowned self] in
-                    self.listingSubject.onNext(())
+                let items = listing.children.map{ $0.data }
+                DispatchQueue.main.async {
+                    itemsSubject.onNext(items)
                 }
                 
             } catch {
-                DispatchQueue.main.async { [unowned self] in
-                    self.errorSubject.onNext(error)
+                DispatchQueue.main.async {
+                    errorSubject.onNext(error)
                 }
             }
         }

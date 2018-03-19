@@ -10,12 +10,12 @@ import UIKit
 
 class ItemListViewController: UITableViewController {
     
+    var dateMapper = AnyMapper(DateMapper(format: "d MMM H:mm"))
+    var commentsCountMapper = AnyMapper<Int, String?>{ "comments: \($0)" }
+    var upsCountMapper = AnyMapper<Int, String?>{ "ups: \($0)" }
+    
     private let model = ItemListModel()
-    private let dateFormatter: DateFormatter = {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "d MMM H:mm"
-        return formatter
-    }()
+    private var items: [Link] = []
     
     // MARK: - View Lifecycle
 
@@ -25,7 +25,10 @@ class ItemListViewController: UITableViewController {
         let mockDataURL = Bundle.main.url(forResource: "RedditTop", withExtension: "json")!
         displayItems(from: mockDataURL)
         
-        model.didLoadItems(tableView.reloadData)
+        model.didLoadItems { items in
+            self.items = items
+            self.tableView.reloadData()
+        }
         model.didFailLoadingItems { error in
             // todo
         }
@@ -40,19 +43,35 @@ class ItemListViewController: UITableViewController {
     // MARK: - UITableViewDataSource
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return model.items.count
+        return items.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "itemCell", for: indexPath) as! ItemTableViewCell
-        let item = model.items[indexPath.row]
-        cell.titleLabel.text = item.title
-        cell.credentialsLabel.text = dateFormatter.string(from: item.date) + (item.author.map{ " by \($0)" } ?? "")
-        cell.commentsLabel.text = "comments: \(item.commentsCount)"
-        cell.upsLabel.text = "ups: \(item.upsCount)"
-        cell.thumbnailImageView.isHidden = (item.thumbnail == nil)
+        let cell = tableView.dequeueReusable(.itemCell, for: indexPath)
+        let item = items[indexPath.row]
+        cell.setViewModel(ItemCellViewModel(
+            thumbnailVisible: (item.thumbnail != nil),
+            title: item.title,
+            credentialsText: dateMapper.map(item.date) + (item.author.map{ " by \($0)" } ?? ""),
+            commentsText: commentsCountMapper.map(item.commentsCount),
+            upsText: upsCountMapper.map(item.upsCount)
+        ))
         return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        let item = items[indexPath.row]
+        let itemCell = cell as! ItemTableViewCell
+        item.thumbnail.map{ $0.url }.map(itemCell.thumbnailImageView.setImage)
+    }
+    
+    override func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        let itemCell = cell as! ItemTableViewCell
+        itemCell.thumbnailImageView.cancelImageLoad()
     }
 
 }
 
+private extension Reusable {
+    static var itemCell: Reusable<ItemTableViewCell> { return #function }
+}
