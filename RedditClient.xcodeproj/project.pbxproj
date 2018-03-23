@@ -156,7 +156,7 @@
 				91234E8D20570DC700434770 /* AppDelegate.swift */,
 				910C65F8206051B1007E47CF /* Core */,
 				91322433205F03990037AC86 /* Domain */,
-				91322443205F07840037AC86 /* Modules */,
+				91322443205F07840037AC86 /* UI */,
 				91322440205F07410037AC86 /* Resources */,
 				91234E9920570DC700434770 /* Info.plist */,
 			);
@@ -194,14 +194,14 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
-		91322443205F07840037AC86 /* Modules */ = {
+		91322443205F07840037AC86 /* UI */ = {
 			isa = PBXGroup;
 			children = (
 				910C6607206055BF007E47CF /* LaunchScreen */,
 				9151ADE2206032C2002B87E4 /* Main */,
 				9151ADE1206032BB002B87E4 /* ItemList */,
 			);
-			path = Modules;
+			path = UI;
 			sourceTree = "<group>";
 		};
 		9151ADE1206032BB002B87E4 /* ItemList */ = {
