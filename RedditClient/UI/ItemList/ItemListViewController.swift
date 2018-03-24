@@ -7,6 +7,100 @@
 //
 
 import UIKit
+import Reactive
+
+enum ImageLoadError: Error {
+    case retrieval(Error)
+    case notImageData
+    case unknown(Error)
+}
+
+protocol ImageLoader {
+    
+    func loadImage(
+        url: URL,
+        success: @escaping (UIImage) -> Void,
+        failure: ((ImageLoadError) -> Void)?
+    )
+    
+}
+
+extension ImageLoader {
+    
+    func loadImage(
+        url: URL,
+        then resolve: @escaping (UIImage) -> Void)
+    {
+        loadImage(url: url, success: resolve, failure: nil)
+    }
+    
+}
+
+struct DefaultImageLoader: ImageLoader {
+    
+    func loadImage(
+        url: URL,
+        success resolve: @escaping (UIImage) -> Void,
+        failure reject: ((ImageLoadError) -> Void)?)
+    {
+        DispatchQueue.global(qos: .userInitiated).async {
+            do {
+                let imageData = try Data(contentsOf: url)
+                if let image = UIImage(data: imageData) {
+                    resolve(image)
+                }
+                else {
+                    reject?(.notImageData)
+                }
+            }
+            catch {
+                reject?(.retrieval(error))
+            }
+        }
+    }
+    
+}
+
+struct ImageLoaderWithCache: ImageLoader {
+    
+    private let sourceLoader: ImageLoader
+    private let cache: NSCache<NSString, UIImage>
+    
+    init(
+        source: ImageLoader,
+        cache: NSCache<NSString, UIImage> = {
+            let cache = NSCache<NSString, UIImage>()
+            cache.countLimit = 20
+            return cache
+        }())
+    {
+        self.sourceLoader = source
+        self.cache = cache
+    }
+    
+    func loadImage(
+        url: URL,
+        success resolve: @escaping (UIImage) -> Void,
+        failure reject: ((ImageLoadError) -> Void)?)
+    {
+        if let cachedImage = cache.object(forKey: url.absoluteString as NSString) {
+            resolve(cachedImage)
+        }
+        else {
+            sourceLoader.loadImage(
+                url: url,
+                success: { [cache] image in
+                    resolve(image)
+                    cache.setObject(image, forKey: url.absoluteString as NSString)
+                },
+                failure: reject
+            )
+        }
+    }
+    
+}
+
+/////
 
 class ItemListViewController: UITableViewController {
     
@@ -16,6 +110,7 @@ class ItemListViewController: UITableViewController {
     
     private let model = ItemListModel()
     private var items: [Link] = []
+    private var subscriptions: [URL: Cancelable] = [:]
     
     // MARK: - View Lifecycle
 
@@ -25,11 +120,12 @@ class ItemListViewController: UITableViewController {
         let mockDataURL = Bundle.main.url(forResource: "RedditTop", withExtension: "json")!
         displayItems(from: mockDataURL)
         
-        model.didLoadItems { items in
+        model.onItems { items in
             self.items = items
             self.tableView.reloadData()
         }
-        model.didFailLoadingItems { error in
+        
+        model.onItemsLoadingError { error in
             // todo
         }
     }
@@ -60,14 +156,21 @@ class ItemListViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        let item = items[indexPath.row]
-        let itemCell = cell as! ItemTableViewCell
-        item.thumbnail.map{ $0.url }.map(itemCell.thumbnailImageView.setImage)
+        guard let thumbnailURL = items[indexPath.row].thumbnail?.url else {
+            return
+        }
+        model.loadImage(with: thumbnailURL) { image in
+            let itemCell = cell as! ItemTableViewCell
+            DispatchQueue.main.async {
+                itemCell.thumbnailImageView.image = image
+            }
+        }
     }
     
     override func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        let itemCell = cell as! ItemTableViewCell
-        itemCell.thumbnailImageView.cancelImageLoad()
+        if let thumbnailURL = items[indexPath.row].thumbnail?.url {
+            model.cancelImageLoad(with: thumbnailURL)
+        }
     }
 
 }

@@ -6,29 +6,36 @@
 //  Copyright © 2018 wonderbeard. All rights reserved.
 //
 
-import Foundation
+import UIKit
 import Reactive
 
 class ItemListModel {
     
     private let queue: DispatchQueue
     private let jsonDecoder: JSONDecoder
+    private let imageLoader: ImageLoader
+    
     private let itemsSubject = ReplaySubject<[Link]>(replay: 1)
     private let errorSubject = ReplaySubject<Error>(replay: 1)
+    private let imageSubject = PublishSubject<(URL, UIImage)>()
+    
+    private var imageLoads: [URL: Cancelable] = [:]
     
     init(
         queue: DispatchQueue = .global(qos: .userInitiated),
-        jsonDecoder: JSONDecoder = JSONDecoder())
+        jsonDecoder: JSONDecoder = JSONDecoder(),
+        imageLoader: ImageLoader = ImageLoaderWithCache(source: DefaultImageLoader()))
     {
         self.queue = queue
         self.jsonDecoder = jsonDecoder
+        self.imageLoader = imageLoader
     }
     
-    func didLoadItems(_ observer: @escaping ([Link]) -> Void) {
+    func onItems(_ observer: @escaping ([Link]) -> Void) {
         itemsSubject.subscribe(observer)
     }
     
-    func didFailLoadingItems(_ observer: @escaping (Error) -> Void) {
+    func onItemsLoadingError(_ observer: @escaping (Error) -> Void) {
         errorSubject.subscribe(observer)
     }
     
@@ -50,6 +57,26 @@ class ItemListModel {
                     errorSubject.onNext(error)
                 }
             }
+        }
+    }
+    
+    func loadImage(with url: URL, then resultHandler: @escaping (UIImage) -> Void) {
+        imageLoads[url] = imageLoader.loadImage(url: url).subscribe(resultHandler)
+    }
+    
+    func cancelImageLoad(with url: URL) {
+        imageLoads[url]?.cancel()
+        imageLoads[url] = nil
+    }
+    
+}
+
+extension ImageLoader {
+    
+    func loadImage(url: URL) -> Action<UIImage> {
+        return Action<UIImage>{ observer in
+            self.loadImage(url: url, then: observer.onNext)
+            return NotCancellable()
         }
     }
     

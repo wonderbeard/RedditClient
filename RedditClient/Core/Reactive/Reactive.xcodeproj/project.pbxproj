@@ -20,6 +20,9 @@
 		9187D0252065CC2600D14C19 /* PublishSubject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9187D0242065CC2600D14C19 /* PublishSubject.swift */; };
 		9187D0272065CC2E00D14C19 /* ReplaySubject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9187D0262065CC2E00D14C19 /* ReplaySubject.swift */; };
 		9187D0292065CCB200D14C19 /* Buffer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9187D0282065CCB200D14C19 /* Buffer.swift */; };
+		91AD8F962065D742008EA03E /* Cancelable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91AD8F952065D742008EA03E /* Cancelable.swift */; };
+		91AD8F9820665946008EA03E /* Sink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91AD8F9720665946008EA03E /* Sink.swift */; };
+		91AD8F9A20665BE4008EA03E /* Action.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91AD8F9920665BE4008EA03E /* Action.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +52,9 @@
 		9187D0242065CC2600D14C19 /* PublishSubject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublishSubject.swift; sourceTree = "<group>"; };
 		9187D0262065CC2E00D14C19 /* ReplaySubject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReplaySubject.swift; sourceTree = "<group>"; };
 		9187D0282065CCB200D14C19 /* Buffer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Buffer.swift; sourceTree = "<group>"; };
+		91AD8F952065D742008EA03E /* Cancelable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cancelable.swift; sourceTree = "<group>"; };
+		91AD8F9720665946008EA03E /* Sink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sink.swift; sourceTree = "<group>"; };
+		91AD8F9920665BE4008EA03E /* Action.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Action.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,7 +125,10 @@
 				9187D0222065CC1800D14C19 /* Subject.swift */,
 				9187D0242065CC2600D14C19 /* PublishSubject.swift */,
 				9187D0262065CC2E00D14C19 /* ReplaySubject.swift */,
+				91AD8F9920665BE4008EA03E /* Action.swift */,
+				91AD8F9720665946008EA03E /* Sink.swift */,
 				9187D0282065CCB200D14C19 /* Buffer.swift */,
+				91AD8F952065D742008EA03E /* Cancelable.swift */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -236,7 +245,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				9187D01F2065CB5000D14C19 /* Map.swift in Sources */,
+				91AD8F9A20665BE4008EA03E /* Action.swift in Sources */,
 				9187D0212065CB5500D14C19 /* Filter.swift in Sources */,
+				91AD8F9820665946008EA03E /* Sink.swift in Sources */,
+				91AD8F962065D742008EA03E /* Cancelable.swift in Sources */,
 				9187D0232065CC1800D14C19 /* Subject.swift in Sources */,
 				9187D0292065CCB200D14C19 /* Buffer.swift in Sources */,
 				9187D0272065CC2E00D14C19 /* ReplaySubject.swift in Sources */,

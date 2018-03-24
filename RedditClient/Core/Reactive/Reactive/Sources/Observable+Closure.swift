@@ -8,8 +8,8 @@
 
 extension Observable {
     
-    public func subscribe(_ handler: @escaping (Element) -> Void) {
-        subscribe(AnyObserver(elementHandler: handler))
+    public func subscribe(_ handler: @escaping (Element) -> Void) -> Cancelable {
+        return subscribe(AnyObserver(elementHandler: handler))
     }
     
 }

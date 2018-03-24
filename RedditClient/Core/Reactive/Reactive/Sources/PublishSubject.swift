@@ -10,14 +10,21 @@ public class PublishSubject<E>: Subject {
     
     public typealias Element = E
     
-    private var observers: [AnyObserver<Element>] = []
+    private var subscribers: [Sink<Element>] = []
     
-    public func subscribe<O: Observer>(_ observer: O) where O.Element == Element {
-        observers.append(AnyObserver(observer))
+    public init() {
+    }
+    
+    public func subscribe<O: Observer>(_ observer: O) -> Cancelable where O.Element == Element {
+        let sink = Sink(observer: observer)
+        subscribers.append(sink)
+        return ClosureCancelable {
+            sink.dispose()
+        }
     }
     
     public func onNext(_ element: Element) {
-        observers.forEach{ $0.onNext(element) }
+        subscribers.forEach{ $0.onNext(element) }
     }
     
 }

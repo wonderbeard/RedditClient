@@ -12,22 +12,27 @@ public struct AnySubject<E>: Subject {
     
     public typealias Element = E
     
-    private let observable: AnyObservable<Element>
-    private let observer: AnyObserver<Element>
+    private let performSubscribe: (AnyObserver<Element>) -> Cancelable
+    private let handleElement: (Element) -> Void
     
     init<O1, O2>(observable: O1, observer: O2)
         where O1: Observable, O1.Element == Element, O2: Observer, O2.Element == Element
     {
-        self.observable = AnyObservable(observable)
-        self.observer = AnyObserver(observer)
+        performSubscribe = observable.subscribe
+        handleElement = observer.onNext
     }
     
-    public func subscribe<O>(_ observer: O) where O : Observer, E == O.Element {
-        observable.subscribe(observer)
+    init<S>(_ source: S) where S: Subject, S.Element == Element {
+        performSubscribe = source.subscribe
+        handleElement = source.onNext
+    }
+    
+    public func subscribe<O>(_ observer: O) -> Cancelable where O : Observer, E == O.Element {
+        return performSubscribe(AnyObserver(observer))
     }
     
     public func onNext(_ element: E) {
-        observer.onNext(element)
+        handleElement(element)
     }
     
 }

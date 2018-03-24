@@ -18,9 +18,9 @@ public class ReplaySubject<Element>: PublishSubject<Element> {
         self.init(replayBuffer: Buffer(size: replayCount))
     }
     
-    public override func subscribe<O: Observer>(_ observer: O) where O.Element == Element {
+    public override func subscribe<O: Observer>(_ observer: O) -> Cancelable where O.Element == Element {
         replayBuffer.forEach(observer.onNext)
-        super.subscribe(observer)
+        return super.subscribe(observer)
     }
     
     public override func onNext(_ element: Element) {

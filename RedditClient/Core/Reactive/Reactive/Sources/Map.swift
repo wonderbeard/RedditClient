@@ -27,8 +27,9 @@ final class Map<Source, Result>: Observable {
         self.transform = transform
     }
     
-    func subscribe<O: Observer>(_ observer: O) where O.Element == Result {
-        source.subscribe(MapObserver(transform: transform, observer: observer))
+    func subscribe<O: Observer>(_ observer: O) -> Cancelable where O.Element == Result {
+        let mapObserver = MapObserver(transform: transform, observer: observer)
+        return source.subscribe(mapObserver)
     }
     
 }

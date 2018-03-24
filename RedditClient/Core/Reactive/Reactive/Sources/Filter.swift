@@ -27,8 +27,9 @@ final class Filter<E>: Observable {
         self.filter = filter
     }
     
-    func subscribe<O: Observer>(_ observer: O) where O.Element == Element {
-        source.subscribe(FilterObserver(filter: filter, observer: observer))
+    func subscribe<O: Observer>(_ observer: O) -> Cancelable where O.Element == Element {
+        let filterObserver = FilterObserver(filter: filter, observer: observer)
+        return source.subscribe(filterObserver)
     }
     
 }
