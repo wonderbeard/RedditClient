@@ -29,6 +29,7 @@
 		9151ADC020602721002B87E4 /* ItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9151ADBF20602721002B87E4 /* ItemTableViewCell.swift */; };
 		9151ADE4206032CB002B87E4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9151ADE3206032CB002B87E4 /* Main.storyboard */; };
 		9180C9C0205F1DAE001A490C /* ItemListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9180C9BF205F1DAE001A490C /* ItemListModel.swift */; };
+		91AD8F902065D05A008EA03E /* Reactive.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91AD8F8A2065CFED008EA03E /* Reactive.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,6 +39,27 @@
 			proxyType = 1;
 			remoteGlobalIDString = 91234E8920570DC700434770;
 			remoteInfo = RedditClient;
+		};
+		91AD8F892065CFED008EA03E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 91AD8F842065CFEC008EA03E /* Reactive.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 9187CFFB2065CA1000D14C19;
+			remoteInfo = Reactive;
+		};
+		91AD8F8B2065CFED008EA03E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 91AD8F842065CFEC008EA03E /* Reactive.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 9187D0042065CA1100D14C19;
+			remoteInfo = ReactiveTests;
+		};
+		91AD8F8D2065D02A008EA03E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 91AD8F842065CFEC008EA03E /* Reactive.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 9187CFFA2065CA1000D14C19;
+			remoteInfo = Reactive;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -68,6 +90,7 @@
 		9151ADBF20602721002B87E4 /* ItemTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemTableViewCell.swift; sourceTree = "<group>"; };
 		9151ADE3206032CB002B87E4 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		9180C9BF205F1DAE001A490C /* ItemListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemListModel.swift; sourceTree = "<group>"; };
+		91AD8F842065CFEC008EA03E /* Reactive.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Reactive.xcodeproj; path = Reactive/Reactive.xcodeproj; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,6 +98,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				91AD8F902065D05A008EA03E /* Reactive.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -91,6 +115,7 @@
 		910C65F8206051B1007E47CF /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				91AD8F842065CFEC008EA03E /* Reactive.xcodeproj */,
 				910C660120605333007E47CF /* Mappers */,
 				910C66062060558D007E47CF /* Reusable */,
 				910C65FD206052BC007E47CF /* UIImageView+ImageURL.swift */,
@@ -131,6 +156,7 @@
 				91234E8C20570DC700434770 /* RedditClient */,
 				91234EA120570DC700434770 /* RedditClientTests */,
 				91234E8B20570DC700434770 /* Products */,
+				91AD8F8F2065D05A008EA03E /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -216,6 +242,22 @@
 			path = Main;
 			sourceTree = "<group>";
 		};
+		91AD8F852065CFEC008EA03E /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				91AD8F8A2065CFED008EA03E /* Reactive.framework */,
+				91AD8F8C2065CFED008EA03E /* ReactiveTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		91AD8F8F2065D05A008EA03E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -230,6 +272,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				91AD8F8E2065D02A008EA03E /* PBXTargetDependency */,
 			);
 			name = RedditClient;
 			productName = RedditClient;
@@ -286,6 +329,12 @@
 			mainGroup = 91234E8120570DC700434770;
 			productRefGroup = 91234E8B20570DC700434770 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 91AD8F852065CFEC008EA03E /* Products */;
+					ProjectRef = 91AD8F842065CFEC008EA03E /* Reactive.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				91234E8920570DC700434770 /* RedditClient */,
@@ -293,6 +342,23 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		91AD8F8A2065CFED008EA03E /* Reactive.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Reactive.framework;
+			remoteRef = 91AD8F892065CFED008EA03E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		91AD8F8C2065CFED008EA03E /* ReactiveTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = ReactiveTests.xctest;
+			remoteRef = 91AD8F8B2065CFED008EA03E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		91234E8820570DC700434770 /* Resources */ = {
@@ -355,6 +421,11 @@
 			isa = PBXTargetDependency;
 			target = 91234E8920570DC700434770 /* RedditClient */;
 			targetProxy = 91234E9F20570DC700434770 /* PBXContainerItemProxy */;
+		};
+		91AD8F8E2065D02A008EA03E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Reactive;
+			targetProxy = 91AD8F8D2065D02A008EA03E /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 

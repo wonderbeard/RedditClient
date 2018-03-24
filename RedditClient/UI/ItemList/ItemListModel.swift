@@ -7,13 +7,14 @@
 //
 
 import Foundation
+import Reactive
 
 class ItemListModel {
     
     private let queue: DispatchQueue
     private let jsonDecoder: JSONDecoder
-    private let itemsSubject = Subject<[Link]>(replay: 1)
-    private let errorSubject = Subject<Error>(replay: 1)
+    private let itemsSubject = ReplaySubject<[Link]>(replay: 1)
+    private let errorSubject = ReplaySubject<Error>(replay: 1)
     
     init(
         queue: DispatchQueue = .global(qos: .userInitiated),
