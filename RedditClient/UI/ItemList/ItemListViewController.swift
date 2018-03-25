@@ -23,24 +23,16 @@ class ItemListViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        let mockDataURL = Bundle.main.url(forResource: "RedditTop", withExtension: "json")!
-        displayItems(from: mockDataURL)
-        
         model.onItems { items in
-            self.items = items
-            self.tableView.reloadData()
+            DispatchQueue.main.async {
+                self.items = items
+                self.tableView.reloadData()
+            }
         }
-        
         model.onItemsLoadingError { error in
             // todo
         }
-    }
-    
-    // MARK: - Public
-    
-    func displayItems(from url: URL) {
-        model.loadItems(from: url)
+        model.loadItems()
     }
     
     // MARK: - UITableViewDataSource

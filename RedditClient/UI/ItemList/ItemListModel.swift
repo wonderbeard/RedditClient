@@ -11,23 +11,18 @@ import Reactive
 
 class ItemListModel {
     
-    private let queue: DispatchQueue
-    private let jsonDecoder: JSONDecoder
+    private let itemsService: LinkListService
     private let imageLoader: ImageLoader
     
     private let itemsSubject = ReplaySubject<[Link]>(replay: 1)
-    private let errorSubject = ReplaySubject<Error>(replay: 1)
-    private let imageSubject = PublishSubject<(URL, UIImage)>()
-    
+    private let errorSubject = ReplaySubject<Error?>(replay: 1)
     private var imageLoads: [URL: Cancelable] = [:]
     
     init(
-        queue: DispatchQueue = .global(qos: .userInitiated),
-        jsonDecoder: JSONDecoder = JSONDecoder(),
+        itemsService: LinkListService = MockRedditTopService(url: Bundle.main.url(forResource: "RedditTop", withExtension: "json")!),
         imageLoader: ImageLoader = ImageLoaderWithCache(source: DefaultImageLoader()))
     {
-        self.queue = queue
-        self.jsonDecoder = jsonDecoder
+        self.itemsService = itemsService
         self.imageLoader = imageLoader
     }
     
@@ -35,29 +30,15 @@ class ItemListModel {
         itemsSubject.subscribe(observer)
     }
     
-    func onItemsLoadingError(_ observer: @escaping (Error) -> Void) {
+    func onItemsLoadingError(_ observer: @escaping (Error?) -> Void) {
         errorSubject.subscribe(observer)
     }
     
-    func loadItems(from url: URL) {
-        queue.async { [jsonDecoder, itemsSubject, errorSubject] in
-            do {
-                
-                let data = try Data(contentsOf: url)
-                let listingThing = try jsonDecoder.decode(Thing<Listing<Thing<Link>>>.self, from: data)
-                
-                let listing = listingThing.data
-                let items = listing.children.map{ $0.data }
-                DispatchQueue.main.async {
-                    itemsSubject.onNext(items)
-                }
-                
-            } catch {
-                DispatchQueue.main.async {
-                    errorSubject.onNext(error)
-                }
-            }
-        }
+    func loadItems() {
+        itemsService.loadItems(
+            success: itemsSubject.onNext,
+            failure: errorSubject.onNext
+        )
     }
     
     func loadImage(with url: URL, then resultHandler: @escaping (UIImage) -> Void) {
