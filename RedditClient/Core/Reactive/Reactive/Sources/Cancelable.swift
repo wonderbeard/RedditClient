@@ -24,12 +24,26 @@ public class ClosureCancelable: Cancelable {
     
 }
 
-public struct NotCancellable: Cancelable {
+public class NotCancellable: Cancelable {
     
     public init() {
     }
     
     public func cancel() {
+    }
+    
+}
+
+public class CompositeCancelable: Cancelable {
+    
+    private let cancellables: [Cancelable]
+    
+    public init(_ composables: Cancelable...) {
+        self.cancellables = composables
+    }
+    
+    public func cancel() {
+        cancellables.forEach{ $0.cancel() }
     }
     
 }
