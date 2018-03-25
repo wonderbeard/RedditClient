@@ -70,14 +70,3 @@ class ItemListModel {
     }
     
 }
-
-extension ImageLoader {
-    
-    func loadImage(url: URL) -> Action<UIImage> {
-        return Action<UIImage>{ observer in
-            self.loadImage(url: url, then: observer.onNext)
-            return NotCancellable()
-        }
-    }
-    
-}
