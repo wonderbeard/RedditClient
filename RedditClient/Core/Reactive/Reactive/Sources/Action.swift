@@ -10,18 +10,18 @@ public class Action<Result>: Observable {
     
     public typealias Element = Result
     
-    private let performSubscribe: (AnyObserver<Element>) -> Cancelable
+    private let run: (Sink<Element>) -> Cancelable
     
     public init(_ main: @escaping (AnyObserver<Element>) -> Cancelable) {
-        performSubscribe = main
+        run = { main(AnyObserver($0)) }
     }
     
     public func subscribe<O: Observer>(_ observer: O) -> Cancelable where O.Element == Result {
-        let subscription = performSubscribe(AnyObserver(observer))
+        let sink = Sink(observer: observer)
+        let actionSubscription = run(sink)
         return ClosureCancelable {
-            // TODO: check if necessary to capture/release self
-            _ = self
-            subscription.cancel()
+            sink.dispose()
+            actionSubscription.cancel()
         }
     }
     

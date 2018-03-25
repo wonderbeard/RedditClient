@@ -11,7 +11,7 @@ public protocol Observer {
     func onNext(_ element: Element)
 }
 
-public struct AnyObserver<Element>: Observer {
+public class AnyObserver<Element>: Observer {
     
     private let handleElement: (Element) -> Void
     

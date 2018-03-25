@@ -30,4 +30,3 @@ class Sink<Element>: Observer {
     }
     
 }
-

@@ -51,4 +51,3 @@ final class FilterObserver<Element>: Observer {
     }
     
 }
-

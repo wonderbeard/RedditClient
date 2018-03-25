@@ -15,16 +15,16 @@ public struct AnySubject<E>: Subject {
     private let performSubscribe: (AnyObserver<Element>) -> Cancelable
     private let handleElement: (Element) -> Void
     
-    init<O1, O2>(observable: O1, observer: O2)
+    public init<S>(_ source: S) where S: Subject, S.Element == Element {
+        performSubscribe = source.subscribe
+        handleElement = source.onNext
+    }
+    
+    public init<O1, O2>(observable: O1, observer: O2)
         where O1: Observable, O1.Element == Element, O2: Observer, O2.Element == Element
     {
         performSubscribe = observable.subscribe
         handleElement = observer.onNext
-    }
-    
-    init<S>(_ source: S) where S: Subject, S.Element == Element {
-        performSubscribe = source.subscribe
-        handleElement = source.onNext
     }
     
     public func subscribe<O>(_ observer: O) -> Cancelable where O : Observer, E == O.Element {

@@ -28,4 +28,3 @@ public struct Buffer<Element>: Sequence {
     }
     
 }
-

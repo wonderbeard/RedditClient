@@ -20,6 +20,7 @@ public class PublishSubject<E>: Subject {
         subscribers.append(sink)
         return ClosureCancelable {
             sink.dispose()
+            // TODO: remove sink from subscribers
         }
     }
     
