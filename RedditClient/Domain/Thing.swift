@@ -1,6 +1,6 @@
 import Foundation
 
-struct Thing<Data: Decodable> {
+struct Thing<Data> {
     
     enum Kind: String, Codable {
         case listing = "Listing"
@@ -17,7 +17,7 @@ struct Thing<Data: Decodable> {
     
 }
 
-extension Thing: Decodable {
+extension Thing: Decodable where Data: Decodable {
     
     enum CodingKey: String, Swift.CodingKey {
         case kind, data

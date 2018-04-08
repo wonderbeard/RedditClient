@@ -19,7 +19,7 @@ class ItemListModel {
     private var imageLoads: [URL: Cancelable] = [:]
     
     init(
-        itemsService: LinkListService = MockRedditTopService(url: Bundle.main.url(forResource: "RedditTop", withExtension: "json")!),
+        itemsService: LinkListService = RedditTopListServiceMock(url: Bundle.main.url(forResource: "RedditTop", withExtension: "json")!),
         imageLoader: ImageLoader = ImageLoaderWithCache(source: DefaultImageLoader()))
     {
         self.itemsService = itemsService

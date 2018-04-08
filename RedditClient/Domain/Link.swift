@@ -21,10 +21,6 @@ struct Link {
 
 extension Link: Decodable {
     
-    enum DecodingConstants {
-        static let unrecognizableURLFormat = "URL has inappropriate format"
-    }
-    
     enum CodingKey: String, Swift.CodingKey {
         case id
         case title
@@ -62,32 +58,22 @@ extension Link: Decodable {
         crosspostsCount = try container.decode(Int?.self, forKey: .crosspostsCount) ?? 0
         likesCount = try container.decode(Int?.self, forKey: .likesCount) ?? 0
         upsCount = try container.decode(Int?.self, forKey: .upsCount) ?? 0
+        url = try container.decode(URL.self, forKey: .url)
         date = try {
             let timestamp = try container.decode(Double.self, forKey: .created)
             return Date(timeIntervalSince1970: timestamp)
         }()
-        url = try {
-            let urlString = try container.decode(String.self, forKey: .url)
-            guard let url = URL(string: urlString) else {
-                throw DecodingError.dataCorruptedError(
-                    forKey: .url,
-                    in: container,
-                    debugDescription: DecodingConstants.unrecognizableURLFormat
-                )
-            }
-            return url
-        }()
         thumbnail = try {
             let urlString = try container.decode(String?.self, forKey: .thumbnailURL)
-            let width = try container.decode(Int?.self, forKey: .thumbnailWidth)
-            let height = try container.decode(Int?.self, forKey: .thumbnailHeight)
-            if let url = urlString.flatMap(URL.init), let width = width, let height = height {
-                return Thumbnail(
-                    url: url,
-                    size: CGSize(width: width, height: height)
-                )
+            let thumbnailWidth = try container.decode(Int?.self, forKey: .thumbnailWidth)
+            let thumbnailHeight = try container.decode(Int?.self, forKey: .thumbnailHeight)
+            guard let url = urlString.flatMap(URL.init), let width = thumbnailWidth, let height = thumbnailHeight else {
+                return nil
             }
-            return nil
+            return Thumbnail(
+                url: url,
+                size: CGSize(width: width, height: height)
+            )
         }()
     }
     

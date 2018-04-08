@@ -1,13 +1,13 @@
 import Foundation
 
-struct Listing<Child: Decodable> {
+struct Listing<Child> {
     
     var children: [Child]
     var pagination: Pagination
     
 }
 
-extension Listing: Decodable {
+extension Listing: Decodable where Child: Decodable {
     
     enum CodingKey: String, Swift.CodingKey {
         case before, after, dist, children
