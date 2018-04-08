@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		9187D0052065CA1100D14C19 /* Reactive.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9187CFFB2065CA1000D14C19 /* Reactive.framework */; };
-		9187D00A2065CA1100D14C19 /* ReactiveTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9187D0092065CA1100D14C19 /* ReactiveTests.swift */; };
 		9187D00C2065CA1100D14C19 /* Reactive.h in Headers */ = {isa = PBXBuildFile; fileRef = 9187CFFE2065CA1100D14C19 /* Reactive.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		9187D0172065CA3B00D14C19 /* Observer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9187D0162065CA3B00D14C19 /* Observer.swift */; };
 		9187D0192065CA8F00D14C19 /* Observer+Void.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9187D0182065CA8F00D14C19 /* Observer+Void.swift */; };
@@ -25,23 +23,10 @@
 		91AD8F9A20665BE4008EA03E /* Action.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91AD8F9920665BE4008EA03E /* Action.swift */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		9187D0062065CA1100D14C19 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 9187CFF22065CA1000D14C19 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 9187CFFA2065CA1000D14C19;
-			remoteInfo = Reactive;
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXFileReference section */
 		9187CFFB2065CA1000D14C19 /* Reactive.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Reactive.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9187CFFE2065CA1100D14C19 /* Reactive.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Reactive.h; sourceTree = "<group>"; };
 		9187CFFF2065CA1100D14C19 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		9187D0042065CA1100D14C19 /* ReactiveTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ReactiveTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		9187D0092065CA1100D14C19 /* ReactiveTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReactiveTests.swift; sourceTree = "<group>"; };
-		9187D00B2065CA1100D14C19 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9187D0162065CA3B00D14C19 /* Observer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observer.swift; sourceTree = "<group>"; };
 		9187D0182065CA8F00D14C19 /* Observer+Void.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Observer+Void.swift"; sourceTree = "<group>"; };
 		9187D01A2065CABD00D14C19 /* Observable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observable.swift; sourceTree = "<group>"; };
@@ -65,14 +50,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		9187D0012065CA1100D14C19 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				9187D0052065CA1100D14C19 /* Reactive.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -80,7 +57,6 @@
 			isa = PBXGroup;
 			children = (
 				9187CFFD2065CA1000D14C19 /* Reactive */,
-				9187D0082065CA1100D14C19 /* ReactiveTests */,
 				9187CFFC2065CA1000D14C19 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -89,7 +65,6 @@
 			isa = PBXGroup;
 			children = (
 				9187CFFB2065CA1000D14C19 /* Reactive.framework */,
-				9187D0042065CA1100D14C19 /* ReactiveTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -102,15 +77,6 @@
 				9187CFFF2065CA1100D14C19 /* Info.plist */,
 			);
 			path = Reactive;
-			sourceTree = "<group>";
-		};
-		9187D0082065CA1100D14C19 /* ReactiveTests */ = {
-			isa = PBXGroup;
-			children = (
-				9187D0092065CA1100D14C19 /* ReactiveTests.swift */,
-				9187D00B2065CA1100D14C19 /* Info.plist */,
-			);
-			path = ReactiveTests;
 			sourceTree = "<group>";
 		};
 		9187D0152065CA2D00D14C19 /* Sources */ = {
@@ -165,24 +131,6 @@
 			productReference = 9187CFFB2065CA1000D14C19 /* Reactive.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		9187D0032065CA1100D14C19 /* ReactiveTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 9187D0122065CA1100D14C19 /* Build configuration list for PBXNativeTarget "ReactiveTests" */;
-			buildPhases = (
-				9187D0002065CA1100D14C19 /* Sources */,
-				9187D0012065CA1100D14C19 /* Frameworks */,
-				9187D0022065CA1100D14C19 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				9187D0072065CA1100D14C19 /* PBXTargetDependency */,
-			);
-			name = ReactiveTests;
-			productName = ReactiveTests;
-			productReference = 9187D0042065CA1100D14C19 /* ReactiveTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -196,10 +144,6 @@
 					9187CFFA2065CA1000D14C19 = {
 						CreatedOnToolsVersion = 9.2;
 						LastSwiftMigration = 0920;
-						ProvisioningStyle = Automatic;
-					};
-					9187D0032065CA1100D14C19 = {
-						CreatedOnToolsVersion = 9.2;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -217,20 +161,12 @@
 			projectRoot = "";
 			targets = (
 				9187CFFA2065CA1000D14C19 /* Reactive */,
-				9187D0032065CA1100D14C19 /* ReactiveTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
 		9187CFF92065CA1000D14C19 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		9187D0022065CA1100D14C19 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -260,23 +196,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		9187D0002065CA1100D14C19 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				9187D00A2065CA1100D14C19 /* ReactiveTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		9187D0072065CA1100D14C19 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 9187CFFA2065CA1000D14C19 /* Reactive */;
-			targetProxy = 9187D0062065CA1100D14C19 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		9187D00D2065CA1100D14C19 /* Debug */ = {
@@ -439,36 +359,6 @@
 			};
 			name = Release;
 		};
-		9187D0132065CA1100D14C19 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 68RDDPSR29;
-				INFOPLIST_FILE = ReactiveTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.wonderbeard.ReactiveTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Debug;
-		};
-		9187D0142065CA1100D14C19 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 68RDDPSR29;
-				INFOPLIST_FILE = ReactiveTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.wonderbeard.ReactiveTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -486,15 +376,6 @@
 			buildConfigurations = (
 				9187D0102065CA1100D14C19 /* Debug */,
 				9187D0112065CA1100D14C19 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		9187D0122065CA1100D14C19 /* Build configuration list for PBXNativeTarget "ReactiveTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				9187D0132065CA1100D14C19 /* Debug */,
-				9187D0142065CA1100D14C19 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
